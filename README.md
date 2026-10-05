@@ -26,6 +26,8 @@ La API arranca en:
 - **Swagger UI**: `http://localhost:<PORT>/swagger`
 > Asegurate de tener varibles de Jwt en archivo. appsettings.json 
 >![alt text](image.png)
+
+
 > La base de datos SQLite (`catalog.db`) se crea automáticamente al primer arranque
 ---
 ### Frontend
