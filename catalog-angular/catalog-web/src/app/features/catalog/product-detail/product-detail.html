@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="page-header">
+        <a routerLink="/catalog/products" class="btn btn-ghost">Back to list</a>
+        @if (product()){
+        <a [routerLink]="['/catalog/products/', product()!.id, 'edit']" class="btn btn-primary">Edit</a>
+        }
+    </div>
+    @if (isLoading()){
+    <div class="loading">Loading...</div>
+    }
+    @else if (error()){
+    <div class="error">{{error()}}</div>
+    }
+    @else if (product(); as p){
+    <div class="detailed-card">
+        <div class="detailed-header">
+            <h1>{{p.name}}</h1>
+            <span [class]="'badge ' + (p.isActive ? 'badge-success' : 'badge-danger')">
+                {{ p.isActive ? 'Active' : 'Inactive' }}
+            </span>
+        </div>
+        @if (p.description) {
+        <p class="description">{{ p.description }}</p>
+        }
+
+        <div class="detail-grid">
+            <div class="detail-item">
+                <span class="detail-label">Category</span>
+                <span class="detail-value">{{ p.categoryName }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Price</span>
+                <span class="detail-value price">{{ p.price | currency }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Stock</span>
+                <span class="detail-value">{{ p.stock }} units</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Created At</span>
+                <span class="detail-value">{{ p.createdAt | date:'medium' }}</span>
+            </div>
+            @if (p.updatedAt) {
+            <div class="detail-item">
+                <span class="detail-label">Last Updated</span>
+                <span class="detail-value">{{ p.updatedAt | date:'medium' }}</span>
+            </div>
+            }
+        </div>
+    </div>
+    }
+
+</div>

@@ -1,0 +1,57 @@
+.container { padding: 24px; max-width: 680px; margin: 0 auto; }
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.detail-card,
+.detailed-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 28px;
+}
+
+.detail-header,
+.detailed-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0;
+  }
+}
+
+.description { color: #64748b; margin-bottom: 24px; line-height: 1.6; }
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.detail-item { display: flex; flex-direction: column; gap: 4px; }
+
+.detail-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #94a3b8;
+}
+
+.detail-value { font-size: 1rem; color: #1e293b; font-weight: 500; }
+.detail-value.price { font-size: 1.25rem; color: #059669; font-weight: 700; }
+
+.loading { text-align: center; padding: 48px; color: #94a3b8; }
+
+.alert { padding: 12px 16px; border-radius: 6px; font-size: 0.875rem; }
+.alert-error { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }

@@ -1,0 +1,111 @@
+<div class="container">
+    <div class="page-header">
+        <h1>Products</h1>
+        @if (auth.isAdmin()) {
+        <a routerLink="/catalog/products/new" class="btn btn-primary">+ New Product</a>
+        }
+    </div>
+
+    <!-- Filters -->
+    <div class="filters-card">
+        <div class="filters-row">
+            <input type="text" class="form-input" placeholder="Search by name or description..."
+                [(ngModel)]="searchTerm" (keyup.enter)="applyFilters()" />
+            <select class="form-input" [(ngModel)]="selectedCategoryId">
+                <option value="">All categories</option>
+                @for (cat of categories(); track cat.id) {
+                <option [value]="cat.id">{{ cat.name }}</option>
+                }
+            </select>
+            <select class="form-input" [(ngModel)]="selectedIsActive">
+                <option value="">All status</option>
+                <option value="true">Active</option>
+                <option value="false">Inactive</option>
+            </select>
+            <button class="btn btn-secondary" (click)="applyFilters()">Search</button>
+            <button class="btn btn-ghost" (click)="clearFilters()">Clear</button>
+        </div>
+    </div>
+
+    <!-- Error -->
+    @if (error()) {
+    <div class="alert alert-error">{{ error() }}</div>
+    }
+
+    <!-- Loading -->
+    @if (store.loading()) {
+    <div class="loading">Loading...</div>
+    } @else {
+    <!-- Table -->
+    <div class="table-card">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (product of store.products(); track product.id) {
+                <tr>
+                    <td>
+                        <strong>{{ product.name }}</strong>
+                        @if (product.description) {
+                        <small>{{ product.description }}</small>
+                        }
+                    </td>
+                    <td>{{ product.categoryName }}</td>
+                    <td>{{ product.price | currency }}</td>
+                    <td>{{ product.stock }}</td>
+                    <td>
+                        <span [class]="'badge ' + (product.isActive ? 'badge-success' : 'badge-danger')">
+                            {{ product.isActive ? 'Active' : 'Inactive' }}
+                        </span>
+                    </td>
+                    <td class="actions">
+                        <a [routerLink]="['/catalog/products', product.id]" class="btn btn-sm btn-ghost">View</a>
+                        @if (auth.isAdmin()) {
+                        <a [routerLink]="['/catalog/products', product.id, 'edit']"
+                            class="btn btn-sm btn-secondary">Edit</a>
+                        <button class="btn btn-sm btn-danger" (click)="deleteProduct(product)">Delete</button>
+                        }
+                    </td>
+                </tr>
+                } @empty {
+                <tr>
+                    <td colspan="6" class="empty-state">No products found.</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pagination -->
+    @if (store.totalPages() > 1) {
+    <div class="pagination">
+        <button class="btn btn-ghost" [disabled]="store.filter().page === 1"
+            (click)="goToPage(store.filter().page - 1)">
+            Previous
+        </button>
+        @for (page of getPages(); track page) {
+        <button [class]="'btn ' + (store.filter().page === page ? 'btn-primary' : 'btn-ghost')"
+            (click)="goToPage(page)">
+            {{ page }}
+        </button>
+        }
+        <button class="btn btn-ghost" [disabled]="store.filter().page === store.totalPages()"
+            (click)="goToPage(store.filter().page + 1)">
+            Next
+        </button>
+    </div>
+    }
+
+    <div class="total-count">
+        {{ store.totalCount() }} product(s) found
+    </div>
+    }
+</div>

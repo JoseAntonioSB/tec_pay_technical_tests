@@ -1,0 +1,345 @@
+{
+	"info": {
+		"_postman_id": "a1f4c610-9783-4304-aeef-4e469d35d90e",
+		"name": "TEC PAY",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2858905"
+	},
+	"item": [
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "GetCategories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7280/api/v1/categories",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7280",
+							"path": [
+								"api",
+								"v1",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Category",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Category test\",\n  \"description\": \"Category swagger\",\n  \"isActive\": true\n}"
+						},
+						"url": {
+							"raw": "https://localhost:7280/api/v1/categories",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7280",
+							"path": [
+								"api",
+								"v1",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCategory",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7280/api/v1/categories/0a476245-0e03-4ec7-a27f-0d4006c93845",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7280",
+							"path": [
+								"api",
+								"v1",
+								"categories",
+								"0a476245-0e03-4ec7-a27f-0d4006c93845"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCategory",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"0C796778-187F-452C-B0A5-5733B1334E15\",\n  \"name\": \"Category Updated\",\n  \"description\": \"Category Updated II\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:7280/api/v1/categories/0C796778-187F-452C-B0A5-5733B1334E15",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7280",
+							"path": [
+								"api",
+								"v1",
+								"categories",
+								"0C796778-187F-452C-B0A5-5733B1334E15"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "GetSearchProducts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7280/api/v1/products?Search=prueba&Page=1&PageSize=10",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7280",
+							"path": [
+								"api",
+								"v1",
+								"products"
+							],
+							"query": [
+								{
+									"key": "Search",
+									"value": "prueba"
+								},
+								{
+									"key": "Page",
+									"value": "1"
+								},
+								{
+									"key": "PageSize",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SaveProduct",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Prueba 001\",\n  \"description\": \"Prueba 001\",\n  \"price\": 10,\n  \"stock\": 1,\n  \"categoryId\": \"3fa85f64-5717-4562-b3fc-2c963f66afa6\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:7280/api/v1/products",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7280",
+							"path": [
+								"api",
+								"v1",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateProduct",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"0a476245-0e03-4ec7-a27f-0d4006c9384f\",\n  \"name\": \"Edit prueba\",\n  \"description\": \"Edit prueba\",\n  \"price\": 10,\n  \"isActive\": true,\n  \"categoryId\": \"F53178F2-C9F9-4673-AA77-5FCAC915A6E2\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:7280/api/v1/products/0a476245-0e03-4ec7-a27f-0d4006c9384f",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7280",
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"0a476245-0e03-4ec7-a27f-0d4006c9384f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteProduct",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7280/api/v1/products/0a476245-0e03-4ec7-a27f-0d4006c93845",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7280",
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"0a476245-0e03-4ec7-a27f-0d4006c93845"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetProductById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7280/api/v1/products/0a476245-0e03-4ec7-a27f-0d4006c9384f",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7280",
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"0a476245-0e03-4ec7-a27f-0d4006c9384f"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"admin@catalog.com\",\n  \"password\": \"Admin123!\"\n}"
+						},
+						"url": {
+							"raw": "https://localhost:7280/api/v1/auth/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7280",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
